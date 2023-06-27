@@ -4,7 +4,7 @@
 {
     "name": "Motorcycle Registry",
     "version": "1",
-    "category": "Kawiil",
+    "category": "Kawiil/Kawiil",
     'icon': '/motorcycle_registry/static/img/icon.png',
     "summary": "Manage Registration of Motorcycles",
     "description": """Motorcycle Registry
@@ -16,10 +16,14 @@ This Module is used to keep track of the Motorcycle Registration and Ownership o
         "base",
     ],
     "data": [
-        "demo/motorcycle_demo.xml",
+        "security/motorcycle_groups.xml",
+        "security/ir.model.access.csv",
         # "views/templates.xml",
     ],
-    "assets": [],
+    "demo": [
+        "demo/motorcycle_demo.xml",
+    ],
+    # "assets": [],
     "license": "LGPL-3",
     "installable": True,
     "auto_install": False,
