@@ -18,7 +18,7 @@ This Module is used to keep track of the Motorcycle Registration and Ownership o
     "data": [
         "security/motorcycle_groups.xml",
         "security/ir.model.access.csv",
-        # "views/templates.xml",
+        "views/motorcycle_menuitems.xml",
     ],
     "demo": [
         "demo/motorcycle_demo.xml",
