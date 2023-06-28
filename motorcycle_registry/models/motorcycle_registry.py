@@ -28,6 +28,7 @@ class MotorcycleRegistry(models.Model):
             raise ValidationError("Invalid format for VIN")
 
         # check if VIN is unique
+        self.ensure_one()
         if self.search_count([('vin', '=', self.vin)]) > 1:
             raise ValidationError("VIN already exists")
 
