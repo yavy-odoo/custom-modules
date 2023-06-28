@@ -7,7 +7,7 @@
             <form string="Registry View">
                 <header></header>
                 <sheet>
-                    <h1><field name="first_name" /></h1>
+                    <h1><field name="registry_number" /></h1>
                     <field name="picture" widget="image" />
                     <group>
                         <group>
@@ -17,11 +17,17 @@
                             <field name="current_mileage" />
                             <field name="license_plate" />
                             <field name="register_date" />
+                            <field name="model" />
+                            <field name="make" />
+                            <field name="year" />
                         </group>
                         <group>
                             <separator string="Owner Information" />
                             <field name="first_name" />
                             <field name="last_name" />
+                            <field name="partner_id" />
+                            <field name="partner_email" />
+                            <field name="partner_phone" />
                         </group>
                     </group>
                     <notebook>
@@ -44,6 +50,11 @@
                 <field name="license_plate" />
                 <field name="first_name" />
                 <field name="last_name" />
+                <field name="model" />
+                <field name="make" />
+                <field name="year" />
+                <field name="partner_email" />
+                <field name="partner_phone" />
             </tree>
         </field>
     </record>

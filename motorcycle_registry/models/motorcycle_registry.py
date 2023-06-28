@@ -17,6 +17,43 @@ class MotorcycleRegistry(models.Model):
     certificate_title = fields.Binary("Certification Title")
     register_date = fields.Date("Registration Date")
 
+    # relationship fields
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string="Owner",
+        store=True,
+        readonly=False
+    )
+
+    # computed fields
+    make = fields.Char("Make", compute="_compute_make", store=True)
+    model = fields.Char("Model", compute="_compute_model", store=True)
+    year = fields.Integer("Year", compute="_compute_year", store=True)
+    partner_email = fields.Char(string='Email', compute='_compute_partner_email', store=True, readonly=True)
+    partner_phone = fields.Char(string="Phone", related="partner_id.phone")
+    # partner_phone = fields.Char(string='Customer Phone', compute='_compute_partner_phone', inverse="_inverse_partner_phone", store=True, readonly=False)
+
+    # referred from helpdesk_ticket module
+    @api.depends('partner_id.email')
+    def _compute_partner_email(self):
+        if self.partner_id:
+            self.partner_email = self.partner_id.email
+
+    @api.depends('vin')
+    def _compute_make(self):
+        for record in self:
+            record.make = record.vin[:2]
+
+    @api.depends('vin')
+    def _compute_model(self):
+        for record in self:
+            record.model = record.vin[2:4]
+
+    @api.depends('vin')
+    def _compute_year(self):
+        for record in self:
+            record.year = int(record.vin[4:6 ])
+
     @api.constrains('registry_number')
     def _check_registry_number(self):
         if not re.match(r"^MRN\d{4}$", self.registry_number):
