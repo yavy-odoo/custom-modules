@@ -26,10 +26,10 @@ class MotorcycleRegistry(models.Model):
     )
 
     # computed fields
-    make = fields.Char("Make", compute="_compute_make", store=True)
-    model = fields.Char("Model", compute="_compute_model", store=True)
-    year = fields.Integer("Year", compute="_compute_year", store=True)
-    partner_email = fields.Char(string='Email', compute='_compute_partner_email', store=True, readonly=True)
+    make = fields.Char("Make", compute="_compute_make")
+    model = fields.Char("Model", compute="_compute_model")
+    year = fields.Integer("Year", compute="_compute_year")
+    partner_email = fields.Char(string='Email', compute='_compute_partner_email', readonly=True)
     partner_phone = fields.Char(string="Phone", related="partner_id.phone")
     # partner_phone = fields.Char(string='Customer Phone', compute='_compute_partner_phone', inverse="_inverse_partner_phone", store=True, readonly=False)
 
