@@ -26,9 +26,9 @@ class MotorcycleRegistry(models.Model):
     )
 
     # computed fields
-    make = fields.Char("Make", compute="_compute_make")
-    model = fields.Char("Model", compute="_compute_model")
-    year = fields.Integer("Year", compute="_compute_year")
+    make = fields.Char("Make", compute="_compute_vin")
+    model = fields.Char("Model", compute="_compute_vin")
+    year = fields.Integer("Year", compute="_compute_vin")
     partner_email = fields.Char(string='Email', compute='_compute_partner_email', readonly=True)
     partner_phone = fields.Char(string="Phone", related="partner_id.phone")
     # partner_phone = fields.Char(string='Customer Phone', compute='_compute_partner_phone', inverse="_inverse_partner_phone", store=True, readonly=False)
@@ -36,15 +36,20 @@ class MotorcycleRegistry(models.Model):
     # referred from helpdesk_ticket module
     @api.depends('partner_id.email')
     def _compute_partner_email(self):
-        if self.partner_id:
-            self.partner_email = self.partner_id.email
+        self.partner_email = self.partner_id.email if self.partner_id else ""
+
 
     @api.depends('vin')
-    def _compute_year(self):
+    def _compute_vin(self):
         for record in self:
-            record.make = record.vin[:2]
-            record.model = record.vin[2:4]
-            record.year = int(record.vin[4:6])
+            if record.vin and len(record.vin) >= 6:
+                record.make = record.vin[:2]
+                record.model = record.vin[2:4]
+                record.year = int(record.vin[4:6])
+            else:
+                record.make=""
+                record.model=""
+                record.year=0
 
     @api.constrains('registry_number')
     def _check_registry_number(self):
