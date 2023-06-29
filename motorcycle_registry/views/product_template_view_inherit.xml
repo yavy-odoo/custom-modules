@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_form_inherit_motorcycle">
+            <field name="name">product.template.product.form.inherit.motorcycle</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+
+
+            <field name="arch" type="xml">
+                <xpath expr="//sheet//notebook" position="inside" attrs="{'invisible':[{'detailed_type', '!=', 'motorcycle'}]}">
+                    <page name="motorcycle" string="Motorcycle Details">
+                        <group>
+                            <separator string="product.group_product_motorcycle">
+                                <field name="make" />
+                                <field name="model" />
+                            </separator>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
