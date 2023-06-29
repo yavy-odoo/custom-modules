@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="compare_motorcycles">
+            <t t-call="website.layout">
+                <t t-set="title">Compare Motorcycles</t>
+                <div class="oe_structure">
+                    <div class="container">
+                        <h1> Compare Motorcycles </h1>
+                        <table class="table">
+                            <thead>
+                                <th>
+                                </th>
+                                <t t-foreach="motorcycles" t-as="motorcycle">
+                                    <th>
+                                        <span t-field="motorcycle.name"/>
+                                    </th>
+                                </t>
+                            </thead>
+                            <t t-foreach="['range', 'horsepower', 'top_speed', 'curb_weight', 'torque', 'battery_capacity']" t-as="motorcycle_attribute">
+                                <tr>
+                                    <td t-esc="motorcycle_attribute" />
+                                    <t t-foreach="motorcycles" t-as="motorcycle">
+                                        <td>
+                                            <span t-esc="motorcycle[motorcycle_attribute]"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
