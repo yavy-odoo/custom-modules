@@ -40,19 +40,11 @@ class MotorcycleRegistry(models.Model):
             self.partner_email = self.partner_id.email
 
     @api.depends('vin')
-    def _compute_make(self):
-        for record in self:
-            record.make = record.vin[:2]
-
-    @api.depends('vin')
-    def _compute_model(self):
-        for record in self:
-            record.model = record.vin[2:4]
-
-    @api.depends('vin')
     def _compute_year(self):
         for record in self:
-            record.year = int(record.vin[4:6 ])
+            record.make = record.vin[:2]
+            record.model = record.vin[2:4]
+            record.year = int(record.vin[4:6])
 
     @api.constrains('registry_number')
     def _check_registry_number(self):
