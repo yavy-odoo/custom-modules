@@ -13,6 +13,12 @@ function useStore() {
 // TaskList
 // -------------------------------------------------------------------------
 class TaskList {
+  constructor(tasks) {
+    this.tasks = tasks || [];
+    const taskIds = this.tasks.map((t) => t.id);
+    this.nextId = taskIds.length ? Math.max(...taskIds) + 1 : 1;
+  }
+
   nextId = 1;
   tasks = [];
 
@@ -36,10 +42,6 @@ class TaskList {
     const index = this.tasks.findIndex((t) => t.id === task.id);
     this.tasks.splice(index, 1);
   }
-}
-
-function createTaskStore() {
-  return reactive(new TaskList());
 }
 
 // -------------------------------------------------------------------------
@@ -89,6 +91,15 @@ class Root extends Component {
       ev.target.value = "";
     }
   }
+}
+
+function createTaskStore() {
+  const saveTasks = () =>
+    localStorage.setItem("todoapp", JSON.stringify(taskStore.tasks));
+  const initialTasks = JSON.parse(localStorage.getItem("todoapp") || "[]");
+  const taskStore = reactive(new TaskList(initialTasks), saveTasks);
+  saveTasks();
+  return taskStore;
 }
 
 // -------------------------------------------------------------------------
