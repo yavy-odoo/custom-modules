@@ -21,6 +21,11 @@ class TaskList {
 
   nextId = 1;
   tasks = [];
+  searchText = "";
+
+  search(event) {
+    this.searchText = event.target.value;
+  }
 
   addTask(text) {
     text = text.trim();
@@ -49,11 +54,13 @@ class TaskList {
 // -------------------------------------------------------------------------
 class Task extends Component {
   static template = xml/* xml */ `
-    <div class="task" t-att-class="props.task.isCompleted ? 'done' : ''">
-        <input type="checkbox" t-att-checked="props.task.isCompleted" t-on-click="() => store.toggleTask(props.task)"/>
-        <span><t t-esc="props.task.text"/></span>
-        <span class="delete" t-on-click="() => store.deleteTask(props.task)">🗑</span>
-    </div>`;
+    <t t-if="props.task.text.includes(store.searchText)">
+        <div class="task" t-att-class="props.task.isCompleted ? 'done' : ''">
+            <input type="checkbox" t-att-checked="props.task.isCompleted" t-on-click="() => store.toggleTask(props.task)"/>
+            <span><t t-esc="props.task.text"/></span>
+            <span class="delete" t-on-click="() => store.deleteTask(props.task)">🗑</span>
+        </div>
+    </t>`;
 
   static props = ["task"];
 
@@ -69,6 +76,7 @@ class Root extends Component {
   static template = xml/* xml */ `
     <div class="todo-app">
         <input placeholder="Enter a new task" t-on-keyup="addTask" t-ref="add-input"/>
+        <input placeholder="Search" t-on-keyup="(e) => store.search(e)"/>
         <div class="task-list">
             <t t-foreach="store.tasks" t-as="task" t-key="task.id">
                 <Task task="task"/>
