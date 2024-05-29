@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-moto_admin,Motorcycle Admin,motorcycle_registry.model_motorcycle_registry,group_moto_admin,1,1,1,1
-moto_user,Motorcycle User,motorcycle_registry.model_motorcycle_registry,group_moto_user,1,0,1,0
