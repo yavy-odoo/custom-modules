@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="motorcycle_registry_action" model="ir.actions.act_window">
+        <field name="name">Registry List</field>
+        <field name="res_model">motorcycle.registry</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new motorcycle
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="motorcycle_registry_menu"
+        name="Motorcycle Registry"
+        sequence="10"
+        web_icon="motorcycle_registry,static/description/icon.png"
+        >
+        <menuitem
+            id="motorcycle_registry_menu_sub"
+            name="Motorcycle Registry"
+            sequence="1"
+        >
+            <menuitem
+                id="motorcycle_registry_submenu"
+                name="Registry"
+                action="motorcycle_registry_action"
+                sequence="2"
+            />
+        </menuitem>
+    </menuitem>
+</odoo>
