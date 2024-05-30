@@ -25,6 +25,7 @@
                     </group>
                     <notebook>
                         <page string="Related Documents">
+                            <label for="certificate_title" string="Certificate "/>
                             <field name="certificate_title"/>
                         </page>
                     </notebook>

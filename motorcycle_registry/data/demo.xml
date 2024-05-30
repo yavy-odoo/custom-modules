@@ -6,7 +6,7 @@
             <field name="first_name">Sasha</field>
             <field name="last_name">Sloan</field>
             <field name="registry_number">MRN0001</field>
-            <field name="vin">KAIN220M000234</field>
+            <field name="vin">WXYZ99XY99997</field>
             <field name="current_mileage">250</field>
         </record>
 
@@ -14,7 +14,7 @@
             <field name="first_name">Benson</field>
             <field name="last_name">Boose</field>
             <field name="registry_number">MRN0002</field>
-            <field name="vin">KWOK190M005532</field>
+            <field name="vin">WXYZ99XY99999</field>
             <field name="current_mileage">5250</field>
             <field name="date_registry">2023-01-27</field>
 
@@ -24,7 +24,7 @@
             <field name="first_name">Mark</field>
             <field name="last_name">Henry</field>
             <field name="registry_number">MRN0003</field>
-            <field name="vin">KXID210M000234</field>
+            <field name="vin">WXYZ99XY99998</field>
             <field name="current_mileage">23250</field>
             <field name="date_registry">2024-04-30</field>
         </record>
