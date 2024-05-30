@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="registry_a" model="motorcycle.registry">
+            <field name="first_name">Sasha</field>
+            <field name="last_name">Sloan</field>
+            <field name="registry_number">MRN0001</field>
+            <field name="vin">KAIN220M000234</field>
+            <field name="current_mileage">250</field>
+        </record>
+
+        <record id="registry_b" model="motorcycle.registry">
+            <field name="first_name">Benson</field>
+            <field name="last_name">Boose</field>
+            <field name="registry_number">MRN0002</field>
+            <field name="vin">KWOK190M005532</field>
+            <field name="current_mileage">5250</field>
+            <field name="date_registry">2023-01-27</field>
+
+        </record>
+
+        <record id="registry_c" model="motorcycle.registry">
+            <field name="first_name">Mark</field>
+            <field name="last_name">Henry</field>
+            <field name="registry_number">MRN0003</field>
+            <field name="vin">KXID210M000234</field>
+            <field name="current_mileage">23250</field>
+            <field name="date_registry">2024-04-30</field>
+        </record>
+
+        <!-- Adds mitchell admin to registry admin -->
+        <record id="base.user_admin" model="res.users">
+            <field name="groups_id" eval="[Command.link(ref('motorcycle_registry.group_registry_admin'))]"/>
+        </record>
+    </data>
+</odoo>
