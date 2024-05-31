@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+
+        <template id="compare_motorcycles">
+          <t t-call="website.layout">
+            <div class="container">
+              <h1>Motorcycle Comparison</h1>
+              <ul>
+                <li t-foreach="motorcycles" t-as="object">
+                  <t t-out="object.name"/>
+                  <!-- display product image in object.image_1920 -->
+                  <img t-attf-src="/web/image/product.product/{{ object.id }}/image_128\" />
+                </li>
+                <dl>
+                  <t t-foreach="['horsepower', 'top_speed', 'torque', 'battery_capacity', 'charge_time']" t-as="field">
+                    <dt><t t-esc="field"/></dt>
+                    <dd><t t-esc="object[field]"/></dd>
+                  </t>
+                </dl>
+              </ul>
+            </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>
