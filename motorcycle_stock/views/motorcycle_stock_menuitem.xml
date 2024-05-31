@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    <!-- Action to show list view of motorcycle products -->
+
+    <record model="ir.actions.act_window" id="motorcycle_stock.action_window">
+      <field name="name">Motorcycle Products</field>
+      <field name="res_model">product.template</field>
+      <!-- Domain to show only products that are storable -->
+      <field name="domain">[('type', '=', 'product')]</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+    <!-- menu categories -->
+
+    <menuitem name="Products" id="motorcycle_stock.menu_1" parent="motorcycle_registry.motorcycle_registry_menu"/>
+
+    <!-- actions -->
+    <menuitem name="List" id="motorcycle_stock.menu_1_list" parent="motorcycle_stock.menu_1"
+              action="motorcycle_stock.action_window"/>
+  </data>
+</odoo>
