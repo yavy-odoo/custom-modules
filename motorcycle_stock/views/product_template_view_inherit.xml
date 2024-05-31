@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+
+    <!-- Action to show list view of motorcycle products -->
+
+    <record model="ir.ui.view" id="template_only_form_view">
+      <field name="name">product.template.product.form.view.inherit.motorcycle.stock</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/notebook/page[last()]" position="after">
+
+          <page name="motorcycle" string="Motorcycle Information" invisible="detailed_type != 'motorcycle'">
+            <group>
+              <group>
+                  <separator string="Motorcycle Information"/>
+                  <field name="make"/>
+                  <field name="model"/>
+                  <!-- <field name="curb_weight"/> -->
+              </group>
+              <group>
+                  <separator string="Motor Information"/>
+                  <field name="horsepower"/>
+                  <field name="top_speed"/>
+                  <field name="torque"/>
+              </group>
+            </group>
+            <group>
+                <separator string="Motor Information"/>
+                <field name="battery_capacity"/>
+                <field name="charge_time"/>
+                <field name="range"/>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

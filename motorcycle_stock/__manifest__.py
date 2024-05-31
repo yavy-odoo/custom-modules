@@ -19,12 +19,13 @@ Manage Stock of Motorcycles"
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'motorcycle_registry', 'product'],
+    'depends': ['base', 'motorcycle_registry', 'stock'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        "views/motorcycle_stock_menuitem.xml"
+        "views/motorcycle_stock_menuitem.xml",
+        "views/product_template_view_inherit.xml"
     ],
     # only loaded in demonstration mode
     'demo': [
