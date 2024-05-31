@@ -27,7 +27,7 @@ class ProductTemplate(models.Model):
     model = fields.Char("Model")
 
 
-    def _detailed_type_selection(self):
+    def _detailed_type_mapping(self):
         type_mapping = super()._detailed_type_mapping()
         type_mapping['motorcycle'] = 'product'
         type_mapping['part'] = 'product'
