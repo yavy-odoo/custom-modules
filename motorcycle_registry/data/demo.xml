@@ -8,6 +8,7 @@
             <field name="registry_number">MRN0001</field>
             <field name="vin">WXYZ99XY99997</field>
             <field name="current_mileage">250</field>
+            <field name="owner_id">1</field>
         </record>
 
         <record id="registry_b" model="motorcycle.registry">
@@ -17,6 +18,8 @@
             <field name="vin">WXYZ99XY99999</field>
             <field name="current_mileage">5250</field>
             <field name="date_registry">2023-01-27</field>
+            <field name="owner_id">1</field>
+
 
         </record>
 
@@ -27,6 +30,8 @@
             <field name="vin">WXYZ99XY99998</field>
             <field name="current_mileage">23250</field>
             <field name="date_registry">2024-04-30</field>
+            <field name="owner_id">1</field>
+
         </record>
 
         <!-- Adds mitchell admin to registry admin -->

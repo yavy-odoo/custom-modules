@@ -12,11 +12,37 @@ class MotorcycleRegistry(models.Model):
     certificate_title = fields.Binary('Certificate Title')
     current_mileage = fields.Float('Current Mileage')
     date_registry = fields.Date('Date Registry')
-    first_name = fields.Char('First Name', required=True)
+    first_name = fields.Char('First Name', required=True) #, related='owner_id.first_name') # related field wont work since contacts do not have first name
     last_name = fields.Char('Last Name', required=True)
     license_plate = fields.Char('License Plate')
     registry_number = fields.Char('Registry Number', required=True, index=True, default="MRN0001", copy=False, readonly=True)
     vin = fields.Char('VIN', required=True)
+    owner_id = fields.Many2one('res.partner', string='Owner', required=True, ondelete='cascade')
+
+    # Add email,phone as related fields
+    email = fields.Char('Email', related='owner_id.email')
+    phone = fields.Char('Phone', related='owner_id.phone')
+
+    # computed fields
+    model = fields.Char('Model', compute='_compute_model', readonly=True)
+    make = fields.Char('Make', compute='_compute_make', readonly=True)
+    year = fields.Char('Year', compute='_compute_year', readonly=True)
+
+    # can have a single compute function below
+    @api.depends('vin')
+    def _compute_model(self):
+        for record in self:
+            record.model = record.vin[2:4]
+
+    @api.depends('vin')
+    def _compute_make(self):
+        for record in self:
+            record.make = record.vin[0:2]
+
+    @api.depends('vin')
+    def _compute_year(self):
+        for record in self:
+            record.year = record.vin[4:6]
 
     @api.constrains('vin')
     def _check_vin(self):

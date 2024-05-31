@@ -15,17 +15,24 @@
                             <field name="current_mileage"/>
                             <field name="date_registry"/>
                             <field name="registry_number"/>
+                            <field name="make"/>
+                            <field name="model"/>
+                            <field name="year"/>
+                            <field name="license_plate"/>
                         </group>
 
                         <group>
                             <separator string="Personal Information"/>
+                            <field name="owner_id" domain="[('is_company','=',False)]"/>
                             <field name="first_name"/>
                             <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Related Documents">
-                            <label for="certificate_title" string="Certificate "/>
+                            <label for="certificate_title" string="Certificate: "/>
                             <field name="certificate_title"/>
                         </page>
                     </notebook>
@@ -43,6 +50,9 @@
                 <field name="registry_number"/>
                 <field name="vin"/>
                 <field name="last_name"/>
+                <field name="make"/>
+                <field name="model"/>
+                <field name="year"/>
                 <field name="license_plate" optional="show"/> <!-- Visible by default but can be hidden-->
                 <field name="first_name" optional="hide"/> <!-- Hidden by default but can be displayed-->
             </tree>
