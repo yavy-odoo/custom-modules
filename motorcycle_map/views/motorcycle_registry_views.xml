@@ -1,0 +1,24 @@
+<odoo>
+  <data>
+
+    <record id="motorcycle_registry_view_map" model="ir.ui.view">
+      <field name="name">Motorcycle Registry</field>
+      <field name="model">motorcycle.registry</field>
+      <field name="arch" type="xml">
+          <map res_partner="owner_id">
+              <field name="owner_id" string="Motorcycle Owner"/>
+          </map>
+      </field>
+  </record>
+
+    <!-- actions opening views on models -->
+
+    <record id="motorcycle_map_action_window" model="ir.actions.act_window.view" >
+      <field name="sequence" eval="10"/>
+      <field name="view_mode">map</field>
+      <field name="view_id" ref="motorcycle_registry_view_map"/>
+      <field name="act_window_id" ref="motorcycle_registry.motorcycle_registry_action"/>
+    </record>
+
+  </data>
+</odoo>
