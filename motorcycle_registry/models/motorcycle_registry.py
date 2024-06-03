@@ -24,25 +24,20 @@ class MotorcycleRegistry(models.Model):
     phone = fields.Char('Phone', related='owner_id.phone')
 
     # computed fields
-    model = fields.Char('Model', compute='_compute_model', readonly=True)
-    make = fields.Char('Make', compute='_compute_make', readonly=True)
-    year = fields.Char('Year', compute='_compute_year', readonly=True)
+    model = fields.Char('Model', compute='_compute_model_make_year', readonly=True, default='')
+    make = fields.Char('Make', compute='_compute_model_make_year', readonly=True, default='')
+    year = fields.Char('Year', compute='_compute_model_make_year', readonly=True, default='')
 
     # can have a single compute function below
     @api.depends('vin')
-    def _compute_model(self):
+    def _compute_model_make_year(self):
         for record in self:
-            record.model = record.vin[2:4]
-
-    @api.depends('vin')
-    def _compute_make(self):
-        for record in self:
-            record.make = record.vin[0:2]
-
-    @api.depends('vin')
-    def _compute_year(self):
-        for record in self:
-            record.year = record.vin[4:6]
+            if record.vin and len(record.vin) > 2:
+                record.make = record.vin[0:2]
+            if record.vin and len(record.vin) > 4:
+                record.model = record.vin[2:4]
+            if record.vin and len(record.vin) > 6:
+                record.year = record.vin[4:6]
 
     @api.constrains('vin')
     def _check_vin(self):
