@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="motorcycle_registry_action" model="ir.actions.act_window">
-        <field name="name">Registry List</field>
+        <field name="name">Motorcycle Registry</field>
         <field name="res_model">motorcycle.registry</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
@@ -9,6 +9,14 @@
                 Click to add a new motorcycle
             </p>
         </field>
+    </record>
+
+
+    <record id="motorcycle_map_action_window" model="ir.actions.act_window.view" >
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="motorcycle_registry_tree_view"/>
+        <field name="act_window_id" ref="motorcycle_registry_action"/>
     </record>
 
     <menuitem
